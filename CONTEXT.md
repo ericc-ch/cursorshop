@@ -1,13 +1,13 @@
-# Showcase Domain Terms
+# cursorshop Domain Terms
 
 ## Terms
 
-**Showcase**:
-The submission, judging, and leaderboard product built and used during the workshop.
-_Avoid_: Workshop platform, event platform
+**cursorshop**:
+The lowercase product, project, npm package, and CLI name. Public web host is `cursorshop.ericc.ch`; public API host is `api.cursorshop.ericc.ch`. Agents invoke the CLI with `npx cursorshop`.
+_Avoid_: CursorShop, CurshorShop, Showcase, cursorshop-cli
 
 **Room**:
-One independently created Showcase session with its own submissions, scores, public URL, and judge secret.
+One independently created cursorshop session with its own submissions, scores, public URL, and judge secret.
 _Avoid_: Event, competition
 
 **Room phase**:

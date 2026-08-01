@@ -2,7 +2,7 @@
 
 Type: research
 
-Question: Can Effect RPC generate a useful OpenAPI contract, or should Showcase use Effect HttpApi?
+Question: Can Effect RPC generate a useful OpenAPI contract, or should cursorshop use Effect HttpApi?
 
 Answer: **Use Effect `HttpApi` as the canonical API contract.** Effect RPC runs over HTTP, so someone could manually describe its single framed transport endpoint, but Effect has no built-in `RpcGroup` → OpenAPI conversion. A hand-written or custom-generated RPC-envelope spec would duplicate the contract and would not produce ordinary resource operations suitable for varied clients.
 

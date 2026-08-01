@@ -2,6 +2,6 @@
 
 Type: grilling
 
-Question: Events/rooms shape — single global Showcase vs createable rooms?
+Question: Events/rooms shape — single global cursorshop vs createable rooms?
 
-Answer: **Rooms.** Anyone can create a blank room. Each room has a **public link** (submit + leaderboard) and a **shared judge secret** (not a secret URL). One room = one live Showcase session. No accounts; open create is fine for this MVP.
+Answer: **Rooms.** Anyone can create a blank Room. Each Room has a **public link** (submit + Leaderboard) and a **shared judge secret** (not a secret URL). One Room = one live cursorshop session. No accounts or creation challenge.

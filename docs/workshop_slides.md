@@ -61,18 +61,18 @@ PRD → RFC → Build → Review → Deploy → Submit
 
 ## Slide 07 / 37 — 02: The Idea
 ### 02 · The Idea
-*Showcase — the product we build and use today.*
+*cursorshop — the product we build and use today.*
 
 ---
 
-## Slide 08 / 37 — 02 · Idea: What We'll Build: Showcase
-### What We'll Build: Showcase
+## Slide 08 / 37 — 02 · Idea: What We'll Build: cursorshop
+### What We'll Build: cursorshop
 #### The Problem
 A live workshop needs a fast, fair way to collect everyone's project and rank them for prizes. A spreadsheet and a chat thread will not hold up.
 
 - A submission & judging platform, built today and used today
 - **Constraints**: 3 hours of work, deployable on Netlify and Railway
-- **Participants submit**: GitHub repo, deployed URL, PRD, RFC, `llms.txt`, screenshots
+- **Participants submit**: GitHub repo, deployed URL, PRD, RFC, screenshots
 - **Judges score**: 1–10 on PRD, RFC, and Code
 - **Leaderboard**: Ranks everyone and highlights the top 5
 - We build it together, then you submit your own work to it
@@ -304,7 +304,7 @@ Agentic SDLC is not autopilot — you approve the plan, judge the review, and ow
 ## Slide 34 / 37 — 08 · Submit: Interactive
 ### Finish Your Build
 - This window is yours. Keep going until you are done.
-- **Deploy, then submit**: GitHub, deployed URL, PRD, RFC, `llms.txt`, screenshots
+- **Deploy, then submit**: GitHub, deployed URL, PRD, RFC, screenshots
 - A repo and local screenshots are enough to submit
 - The facilitator keeps the room going with live help and time checks
 
