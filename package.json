@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "cursorshop",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm --filter @cursorshop/api --filter @cursorshop/web --filter @cursorshop/shared --if-present run build",
+    "check": "pnpm run typecheck && pnpm run test && pnpm run lint",
+    "dev": "pnpm run dev:web",
+    "dev:api": "pnpm --filter @cursorshop/api run dev",
+    "dev:web": "pnpm --filter @cursorshop/web run dev",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "prepare": "simple-git-hooks && effect-language-service patch",
+    "references": "node scripts/references.ts",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc -b && pnpm --filter @cursorshop/api --filter @cursorshop/web --filter @cursorshop/shared --if-present run typecheck"
+  },
+  "devDependencies": {
+    "@effect/language-service": "catalog:",
+    "@effect/platform-node": "catalog:",
+    "@types/node": "catalog:",
+    "effect": "catalog:",
+    "oxfmt": "^0.61.0",
+    "oxlint": "^1.76.0",
+    "simple-git-hooks": "^2.13.1",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm run check"
+  },
+  "engines": {
+    "node": ">=22.18.0",
+    "pnpm": ">=11.2.2"
+  },
+  "packageManager": "pnpm@11.2.2"
+}
