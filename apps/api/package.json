@@ -13,6 +13,7 @@
   "dependencies": {
     "@cursorshop/shared": "workspace:*",
     "@effect/platform-node": "catalog:",
+    "alchemy": "2.0.0-beta.66",
     "effect": "catalog:"
   },
   "devDependencies": {

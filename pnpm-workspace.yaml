@@ -5,6 +5,7 @@ packages:
 allowBuilds:
   msgpackr-extract: true
   simple-git-hooks: true
+  workerd: true
 
 catalog:
   "@effect/language-service": ^0.87.1
