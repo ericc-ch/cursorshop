@@ -1,13 +1,37 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["./src/"],
+  "include": [
+    "./src/",
+    "../api/src/app.ts",
+    "../api/src/worker.ts",
+    "../api/src/deploy.ts"
+  ],
   "compilerOptions": {
     "composite": true,
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "Preserve",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "allowImportingTsExtensions": true,
-    "types": ["vite/client"]
-  }
+    "ignoreDeprecations": "6.0",
+    "types": [
+      "vite/client",
+      "@cloudflare/workers-types",
+      "node"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "./src/**/*.test.ts",
+    "./src/**/*.test.tsx"
+  ]
 }

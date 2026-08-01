@@ -1,6 +1,11 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "ignorePatterns": ["**/node_modules/**", "**/dist/**", "**/coverage/**"],
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/coverage/**",
+    "**/routeTree.gen.ts"
+  ],
   "plugins": ["import", "oxc", "promise", "react", "typescript", "unicorn"],
   "rules": {
     "class-methods-use-this": "error",

@@ -21,6 +21,7 @@
 - Use Tailwind and shadcn initialized with Base UI. Choose components in this order: existing shadcn component, composition of existing shadcn components, Base UI primitive, custom component. Document each fallback.
 - Build one polished light editorial-scoreboard theme. Participant forms are mobile-first, judging is desktop-first but remains usable on mobile, and the leaderboard is responsive and projector-friendly.
 - Before planning or editing frontend UI, load and follow the `design` skill.
+- Never edit TanStack Router's generated `routeTree.gen.ts`. It is gitignored and excluded from Oxlint, Oxfmt, Vitest coverage paths, and similar tooling; let the router plugin regenerate it.
 
 ## API and Effect
 

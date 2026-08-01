@@ -11,3 +11,4 @@ coverage/
 !.env.example
 .direnv/
 .DS_Store
+**/routeTree.gen.ts

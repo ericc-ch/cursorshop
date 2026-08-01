@@ -3,6 +3,7 @@ packages:
   - packages/*
 
 allowBuilds:
+  esbuild: true
   msgpackr-extract: true
   simple-git-hooks: true
   workerd: true
