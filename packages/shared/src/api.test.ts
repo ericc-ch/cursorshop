@@ -1,7 +1,13 @@
 import { Effect } from "effect"
+import { OpenApi } from "effect/unstable/httpapi"
 import { describe, expect, it } from "vitest"
 
-import { decodeHealthResponse, makeHealthResponse, makeHealthResponseEffect } from "./api.ts"
+import {
+  CursorshopApi,
+  decodeHealthResponse,
+  makeHealthResponse,
+  makeHealthResponseEffect,
+} from "./api.ts"
 
 describe("health response", () => {
   it("creates a response with the shared shape", () => {
@@ -21,5 +27,24 @@ describe("health response", () => {
 
   it("rejects an invalid response", () => {
     expect(() => decodeHealthResponse({ status: "offline" })).toThrow()
+  })
+})
+
+describe("CursorshopApi contract", () => {
+  it("exposes a documented GET /api/health operation", () => {
+    const endpoint = CursorshopApi.groups.Health.endpoints.health
+    const [success] = endpoint.success
+
+    expect(endpoint.method).toBe("GET")
+    expect(endpoint.path).toBe("/api/health")
+    expect(success?.ast.annotations?.identifier).toBe("HealthResponse")
+    expect(endpoint.error.size).toBeGreaterThan(0)
+  })
+
+  it("generates OpenAPI that includes the health path", () => {
+    const document = OpenApi.fromApi(CursorshopApi)
+
+    expect(document.info.title).toBe("cursorshop API")
+    expect(document.paths?.["/api/health"]?.get).toBeDefined()
   })
 })
