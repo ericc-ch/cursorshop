@@ -27,6 +27,11 @@ const repositories = [
     directory: "vite",
     url: "https://github.com/vitejs/vite.git",
   },
+  {
+    name: "Alchemy",
+    directory: "alchemy",
+    url: "https://github.com/alchemy-run/alchemy.git",
+  },
 ] satisfies ReadonlyArray<ReferenceRepository>
 
 const referencesDir = "/tmp/references"

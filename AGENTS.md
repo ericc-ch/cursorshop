@@ -56,3 +56,4 @@ Available references:
 - Effect — Effect v4
 - React — browser UI library
 - Vite — web build tool
+- Alchemy — Infrastructure-as-Effects framework (https://alchemy.run)
