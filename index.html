@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cursorshop — agent-first CLI for the workshop leaderboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --field: #f3f5f8;
+    --paper: #fdfdfc;
+    --ink: #1b2431;
+    --ink-soft: #59616f;
+    --line: #d9dee6;
+    --accent: #ff4d1a;
+    --terminal: #141a22;
+    --ok: #3fb950;
+    --hl: #79c0ff;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--field); color: var(--ink);
+    font: 400 16px/1.6 "Public Sans", system-ui, sans-serif;
+    padding: 40px 24px 56px;
+  }
+  main { max-width: 880px; margin: 0 auto; }
+  header { border-bottom: 3px solid var(--ink); padding-bottom: 20px; }
+  .kicker {
+    font: 700 12px/1 "Public Sans", sans-serif; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+    display: block;
+  }
+  h1 {
+    font: 700 clamp(2.6rem, 6vw, 4.2rem)/1.02 "Fraunces", Georgia, serif;
+    letter-spacing: -0.015em; max-width: 14ch;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lede {
+    font-size: 1.12rem; color: var(--ink-soft); max-width: 52ch;
+    margin: 18px 0 0 0;
+  }
+  .scoreline {
+    display: flex; gap: 24px; margin: 26px 0 40px; flex-wrap: wrap;
+  }
+  .stat {
+    border: 1px solid var(--line); background: var(--paper);
+    border-radius: 8px; padding: 10px 16px;
+  }
+  .stat b { font: 700 1.5rem "Fraunces", serif; color: var(--ink); display: block; line-height: 1.1; }
+  .stat span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-soft); }
+  .grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; align-items: start; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .terminal {
+    background: var(--terminal); color: #e6edf3; border-radius: 12px;
+    padding: 18px 20px; box-shadow: 0 18px 48px -16px rgba(27, 36, 49, 0.35);
+    border-top: 1px solid #2a3341;
+  }
+  .terminal .bar { display: flex; gap: 7px; margin-bottom: 14px; }
+  .terminal .bar i { width: 10px; height: 10px; border-radius: 50%; background: #3d4754; display: block; }
+  pre { font: 13.5px/1.65 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-x: auto; white-space: pre; }
+  .d { color: #8b949e; } .g { color: var(--ok); } .b { color: var(--hl); } .o { color: #ff9d4d; }
+  h2 { font: 700 1.35rem "Fraunces", serif; margin-bottom: 12px; }
+  section + section { margin-top: 40px; }
+  ol { list-style: none; counter-reset: step; padding: 0; }
+  ol li {
+    counter-increment: step; position: relative; padding: 0 0 18px 52px; color: var(--ink-soft);
+  }
+  ol li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute; left: 0; top: -4px;
+    font: 700 1.3rem "Fraunces", serif; color: var(--accent);
+  }
+  ol li b { color: var(--ink); font-weight: 700; }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  footer {
+    margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
+    color: var(--ink-soft); font-size: 0.9rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  footer .wink { font-style: italic; font-family: "Fraunces", serif; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="kicker">Cursor Jakarta × Hacktiv8 Workshop</span>
+    <h1>The leaderboard has no API. <em>We made one anyway.</em></h1>
+    <p class="lede">
+      <strong>cursorshop</strong> is a zero-dependency Node CLI that reverse-engineers the
+      Showcase board and drives its real server functions — submit, list, and inspect
+      projects from the terminal. JSON in, JSON out, agent-friendly.
+    </p>
+    <div class="scoreline">
+      <div class="stat"><b>0</b><span>dependencies</span></div>
+      <div class="stat"><b>3</b><span>commands</span></div>
+      <div class="stat"><b>1</b><span>hand-rolled codec</span></div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <section>
+      <h2>Submit without leaving the shell</h2>
+      <ol>
+        <li><b>No documented API? No problem.</b> Endpoint hashes were recovered from the
+          deployed JS bundle and cross-checked against the open-source server.</li>
+        <li><b>seroval, by hand.</b> A ~120-line codec for the board's cross-mode wire
+          format — the deployed serializer predates every public release.</li>
+        <li><b>Browser-shaped requests.</b> The edge rejects non-browser traffic, so the
+          CLI speaks exactly like the web app does.</li>
+        <li><b>Made for agents.</b> Predictable exit codes — <code>0</code> ok,
+          <code>1</code> usage, <code>2</code> board failure — so scripts never guess.</li>
+      </ol>
+    </section>
+
+    <div class="terminal" aria-label="Terminal demo">
+      <div class="bar"><i></i><i></i><i></i></div>
+<pre><span class="d">$</span> <span class="o">showcase</span> submit --title cursorshop \
+    --name erickc \
+    --repo-url github.com/ericc-ch/cursorshop \
+    --prd-file prd.md \
+    --rfc-file rfc.md \
+    --screenshot screenshot.png
+
+{ <span class="b">"ok"</span>: <span class="g">true</span>,
+  <span class="b">"judgeLane"</span>: 1,
+  <span class="b">"url"</span>: <span class="g">"leaderboard.naufaldi.com/…"</span> }
+
+<span class="d">$</span> <span class="o">showcase</span> list
+[ { <span class="b">"title"</span>: "MaSBar", <span class="b">"judgeLane"</span>: 1 },
+  { <span class="b">"title"</span>: "Whiteboard", <span class="b">"judgeLane"</span>: 3 },
+  <span class="d">…</span> ]</pre>
+    </div>
+  </div>
+
+  <footer>
+    <span class="wink">Built in the last 2 minutes before judging started.</span>
+    <a href="https://github.com/ericc-ch/cursorshop">github.com/ericc-ch/cursorshop</a>
+  </footer>
+</main>
+</body>
+</html>
