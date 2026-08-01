@@ -5,6 +5,7 @@ Problem: Workshop participants need a fast, reliable way to submit roughly 90 pr
 Solution: Provide accountless rooms with a public submission flow, secret-gated judging, phase-controlled results, and an ordinary OpenAPI HTTP API. Run cursorshop on Cloudflare through Alchemy at `cursorshop.ericc.ch` / `api.cursorshop.ericc.ch`, store relational data in D1 and screenshots in R2, and keep the implementation small enough for a roughly three-hour build.
 
 User stories:
+
 1. As an organizer, I want to create a room after passing an abuse check, so that I receive a public room link and a judge secret for one cursorshop session.
 2. As a participant, I want to submit my participant or team name, project title, GitHub repository, deployed URL, PRD and RFC Markdown, and screenshots, so that judges can review my project.
 3. As a participant, I want an edit token when I submit, so that I can correct my submission during the submissions phase without creating an account.
@@ -15,6 +16,7 @@ User stories:
 8. As an external client or agent, I want conventional HTTP operations, clear OpenAPI documentation, and a `npx cursorshop` CLI derived from the same contract, so that I can submit and judge without using the browser.
 
 Implementation decisions:
+
 - Keep the pnpm monorepo boundaries: a TanStack Start and React web application, an Effect API application, a `cursorshop` CLI application, shared Effect schemas and HTTP contracts, and a root Alchemy v2 stack.
 - Use TanStack Router through TanStack Start. Use one TanStack Query client for server state: route loaders prefetch reusable Query options, components read with `useSuspenseQuery` or `useQuery`, and mutations update or invalidate the Query cache.
 - Use TanStack Form for Room, Submission, and Score forms. Adapt shared Effect schemas through Effect's Standard Schema support so browser validation does not introduce a parallel Zod contract.
@@ -46,6 +48,7 @@ Implementation decisions:
 - Keep API route construction separate from Worker entrypoints and keep Effect execution at application edges.
 
 Testing decisions:
+
 - Use Vitest in Node for schemas, credential hashing and verification, phase transitions, score validation and ranking, submission and document-length limits, and screenshot constraints.
 - Test API behavior through the Effect web handler, including authorization headers, phase conflicts, atomic submission visibility, multipart validation, complete-scorecard enforcement, fixed screenshot slots, and the 100-submission boundary.
 - Test route-loader prefetch, hydrated Query reads, mutation cache behavior, TanStack Form validation through shared Effect schemas, and complete loading, empty, error, success, focus, and disabled states.
@@ -54,6 +57,7 @@ Testing decisions:
 - Run the repository's typecheck, test, lint, and build commands after implementation changes.
 
 Out of scope:
+
 - User accounts, Better Auth, password recovery, and per-judge credentials.
 - A secret judge URL as the only authorization mechanism.
 - Effect RPC or parallel RPC and HTTP contracts.
@@ -66,6 +70,7 @@ Out of scope:
 - Alchemy live deploy/destroy test suites and Vitest Browser Mode as the primary end-to-end layer.
 
 Notes:
+
 - Product requirements come from `docs/workshop_slides.md`.
 - Domain language is defined in `CONTEXT.md`, and accepted infrastructure and accountless-room choices are recorded in the architecture decision records.
 - Before implementing any ticket, record the current local references and/or official documentation consulted and the API or pattern selected. Before any frontend ticket, load and follow the `design` skill.

@@ -22,10 +22,7 @@ export const HealthLive = HttpApiBuilder.group(CursorshopApi, "Health", (handler
  */
 export const ApiLive = HttpApiBuilder.layer(CursorshopApi, {
   openapiPath: "/openapi.json",
-}).pipe(
-  Layer.provide(HealthLive),
-  Layer.provide(HttpApiScalar.layer(CursorshopApi)),
-)
+}).pipe(Layer.provide(HealthLive), Layer.provide(HttpApiScalar.layer(CursorshopApi)))
 
 /**
  * Cloudflare Worker substitute for `HttpPlatform.layer`.

@@ -9,12 +9,7 @@ import { Effect } from "effect"
 import { HttpRouter } from "effect/unstable/http"
 
 import { WorkerApiLive } from "./app.ts"
-import {
-  API_WORKER_LOGICAL_ID,
-  Database,
-  Screenshots,
-  apiWorkerProps,
-} from "./deploy.ts"
+import { API_WORKER_LOGICAL_ID, Database, Screenshots, apiWorkerProps } from "./deploy.ts"
 
 /**
  * Public API Worker on `api.cursorshop.ericc.ch`.
@@ -40,9 +35,6 @@ export default class Api extends Cloudflare.Worker<Api>()(
       fetch: yield* HttpRouter.toHttpEffect(WorkerApiLive),
     }
   }).pipe(
-    Effect.provide([
-      Cloudflare.D1.QueryDatabaseBinding,
-      Cloudflare.R2.ReadWriteBucketBinding,
-    ]),
+    Effect.provide([Cloudflare.D1.QueryDatabaseBinding, Cloudflare.R2.ReadWriteBucketBinding]),
   ),
 ) {}

@@ -24,8 +24,8 @@ function HomePage() {
           cursorshop
         </p>
         <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          Submit projects, score them fairly, and publish the board — without spreadsheets
-          or chat threads.
+          Submit projects, score them fairly, and publish the board — without spreadsheets or chat
+          threads.
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <Badge variant="muted">Workshop control room</Badge>

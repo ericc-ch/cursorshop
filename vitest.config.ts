@@ -14,11 +14,6 @@ export default defineConfig({
   test: {
     fileParallelism: false,
     passWithNoTests: true,
-    exclude: [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/routeTree.gen.ts",
-      "**/*.gen.ts",
-    ],
+    exclude: ["**/node_modules/**", "**/dist/**", "**/routeTree.gen.ts", "**/*.gen.ts"],
   },
 })

@@ -23,7 +23,7 @@
  * The seroval cross-mode wire codec lives in ./seroval-cross.ts (the deployed
  * seroval predates the public 1.6.0 release, so a pinned subset is safer).
  */
-import { decodeCross, encodeRequestEnvelope } from "./seroval-cross.ts"
+import { decodeCross, encodeRequestEnvelope } from "./seroval-cross.js"
 
 /** Production origin of the board. */
 export const DEFAULT_BASE_URL = "https://leaderboard.naufaldi.com"

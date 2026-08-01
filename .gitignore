@@ -12,3 +12,4 @@ coverage/
 .direnv/
 .DS_Store
 **/routeTree.gen.ts
+apps/cli/dist/

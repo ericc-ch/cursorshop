@@ -1,18 +1,39 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
-  "name": "showcase",
-  "version": "0.1.0",
-  "private": true,
-  "bin": {
-    "showcase": "./src/main.ts"
+  "name": "cursorshop",
+  "version": "0.1.1",
+  "description": "Agent-first CLI for the workshop leaderboard at leaderboard.naufaldi.com — list, inspect, and submit projects from the terminal.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericc-ch/cursorshop.git",
+    "directory": "apps/cli"
   },
+  "homepage": "https://ericc-ch.github.io/cursorshop/",
+  "keywords": [
+    "cli",
+    "workshop",
+    "leaderboard",
+    "submissions",
+    "hackathon"
+  ],
   "type": "module",
+  "bin": {
+    "cursorshop": "./dist/main.js"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "tsc -p tsconfig.build.json",
     "start": "node ./src/main.ts",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/node": "catalog:"
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
   },
   "engines": {
     "node": ">=22.18.0"

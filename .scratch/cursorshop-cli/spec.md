@@ -5,6 +5,7 @@ Problem: AI agents and operators need to create rooms, submit projects, judge sc
 Solution: Ship a Node CLI named `cursorshop` that drives the full cursorshop lifecycle through the shared Effect `HttpApi` contract against `api.cursorshop.ericc.ch`. Agents invoke it with `npx cursorshop`, get JSON in and out, and discover operations from OpenAPI plus CLI `--help` that mirror each other.
 
 User stories:
+
 1. As an agent, I want to create a Room and receive its public URL and one-time judge secret as JSON, so that I can run a cursorshop session without a browser.
 2. As an agent, I want to create and update a Submission with string fields and screenshot files, so that I can enter a project on behalf of a participant.
 3. As an agent, I want to advance a Room phase with the judge secret, so that I can move from submissions to judging to results.
@@ -14,6 +15,7 @@ User stories:
 7. As an operator, I want to install and run the CLI with `npx cursorshop`, so that I do not need a local monorepo checkout.
 
 Implementation decisions:
+
 - Add `apps/cli` as a pnpm workspace package targeting Node 22 and TypeScript.
 - Define commands with Effect v4 `effect/unstable/cli` and provide Node services at the entrypoint.
 - Bundle and typecheck the package with tsdown for npm publishing. Publish the public package `cursorshop` with bin `cursorshop` so agents run `npx cursorshop`.
@@ -35,6 +37,7 @@ Implementation decisions:
 - Room and Submission creation remain fully public for web and CLI clients (no Turnstile or machine token).
 
 Testing decisions:
+
 - Use Vitest next to CLI code for argument parsing, help expectations, JSON stdout/stderr shaping, and exit codes.
 - Add integration tests that run CLI commands against the Effect API web handler (or an equivalent in-process HTTP boundary) using the shared HttpApi contract.
 - Prefer assertions at the CLI public boundary and HTTP contract boundary rather than private helpers.
@@ -42,6 +45,7 @@ Testing decisions:
 - Run the repository typecheck, test, lint, and build commands after implementation changes.
 
 Out of scope:
+
 - Direct D1 or R2 access.
 - Built-in AI model or autonomous judging logic.
 - Browser automation for the web application.
@@ -54,6 +58,7 @@ Out of scope:
 - Replacing the web experience.
 
 Notes:
+
 - Product behavior and API rules come from the cursorshop spec and architecture decisions; this CLI is a client of that API.
 - Domain language is defined in `CONTEXT.md`.
 - Research current Effect CLI, HttpApiClient, and tsdown documentation before implementation tickets; record sources in ticket Research notes.

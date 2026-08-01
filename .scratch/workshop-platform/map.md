@@ -7,6 +7,7 @@ Notes: Wayfinder only. Product truth: `docs/workshop_slides.md`. Domain terms li
 Implementation spec: [cursorshop](../cursorshop/spec.md)
 
 Decisions so far:
+
 - [Stack research](./issues/01-stack-research.md) — Alchemy v2 + Cloudflare; free-tier CPU is the main risk
 - [Database](./issues/02-database.md) — D1
 - [Worker topology](./issues/03-worker-topology.md) — TanStack Start web + Effect API Workers
@@ -38,9 +39,11 @@ Decisions so far:
 - [Submission creation](./issues/29-submission-creation.md) — One bounded multipart request creates a complete submission with 1–3 screenshots
 
 Not yet specified:
+
 - Nothing; ready for implementation
 
 Out of scope:
+
 - Better Auth / user accounts
 - Per-judge secrets
 - Secret-judge-URL as the only gate

@@ -11,6 +11,7 @@ The component system will use Tailwind CSS and shadcn initialized with Base UI. 
 **Consequences:** The application has one server-state convention and one form-state convention. Base UI supplies accessible behavior beneath shadcn's styled components, while copied shadcn source remains locally adaptable. The extra TanStack packages increase the frontend toolchain, so implementation must consult current official documentation before using APIs and avoid abstractions that duplicate framework behavior.
 
 **References:**
+
 - [TanStack Start React Query example](https://tanstack.com/start/latest/docs/framework/react/examples/start-basic-react-query)
 - [TanStack Form validation](https://tanstack.com/form/latest/docs/framework/react/guides/validation)
 - [Effect Schema to Standard Schema](https://effect.website/docs/schema/standard-schema/)

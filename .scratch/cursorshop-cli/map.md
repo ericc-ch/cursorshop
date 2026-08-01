@@ -9,6 +9,7 @@ Implementation spec: [cursorshop CLI](./spec.md)
 Implementation tickets: `./issues/01`–`12` (CLI can proceed in parallel with web once the shared contract is stubbed or real).
 
 Decisions so far:
+
 - Full workflow scope — create/read Rooms, submit/edit projects, advance phases, score, and read results
 - Automation-first interface — non-interactive flags, JSON stdout, JSON stderr errors, exit 0/1/2
 - [Open creation](./decisions/01-open-creation.md) — Remove Turnstile; Room and Submission creation are public for web and CLI clients
@@ -28,9 +29,11 @@ Decisions so far:
 - [Testing strategy](./decisions/15-testing.md) — Vitest unit + handler integration; no live publish smoke for MVP
 
 Not yet specified:
+
 - Nothing; implementation tickets are ready
 
 Out of scope:
+
 - Direct D1 or R2 access
 - A built-in AI model or autonomous judging logic
 - Browser automation for the web application

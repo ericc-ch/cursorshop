@@ -45,8 +45,8 @@ export function HealthSuccessPanel({ health }: { readonly health: HealthResponse
       <CardContent className="space-y-4">
         <HealthDetails health={health} />
         <p className="text-sm text-muted-foreground">
-          The web Worker reaches the API through an Alchemy-managed binding — not a
-          development-only public API URL.
+          The web Worker reaches the API through an Alchemy-managed binding — not a development-only
+          public API URL.
         </p>
       </CardContent>
     </Card>
@@ -118,8 +118,8 @@ export function HealthEmptyBoard() {
         <CardTitle>No active room yet</CardTitle>
       </CardHeader>
       <CardContent className="text-sm leading-relaxed text-muted-foreground">
-        The API is online. When an organizer opens a room, submissions and judging will
-        fill this board.
+        The API is online. When an organizer opens a room, submissions and judging will fill this
+        board.
       </CardContent>
     </Card>
   )

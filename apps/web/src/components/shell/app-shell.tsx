@@ -58,7 +58,10 @@ function NavItem({
         {label}
       </span>
       {active ? (
-        <Badge className="border-transparent bg-rail-accent text-accent-foreground" variant="success">
+        <Badge
+          className="border-transparent bg-rail-accent text-accent-foreground"
+          variant="success"
+        >
           Live
         </Badge>
       ) : null}

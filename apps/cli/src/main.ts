@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * `showcase` — automation CLI for the Showcase board at
+ * `cursorshop` — automation CLI for the Showcase board at
  * https://leaderboard.naufaldi.com (source: https://github.com/naufaldi/showcase).
  *
  * Drives the same TanStack Start server functions the browser uses. Success
@@ -9,9 +9,9 @@
  * failure.
  *
  * Commands:
- *   showcase list                                  All submissions (JSON array)
- *   showcase get --id <uuid>                       One submission with PRD/RFC markdown and scores
- *   showcase submit --title <t> --name <team> \
+ *   cursorshop list                                  All submissions (JSON array)
+ *   cursorshop get --id <uuid>                       One submission with PRD/RFC markdown and scores
+ *   cursorshop submit --title <t> --name <team> \
  *     --repo-url <url> --app-url <url> \
  *     (--prd <text> | --prd-file <path>) \
  *     (--rfc <text> | --rfc-file <path>) \
@@ -28,7 +28,7 @@ import {
   callPostFormServerFn,
   DEFAULT_BASE_URL,
   ServerCallError,
-} from "./serverfn.ts"
+} from "./serverfn.js"
 import {
   screenshotMimeType,
   validateScreenshot,
@@ -37,14 +37,14 @@ import {
   type Submission,
   type SubmissionDetail,
   type SubmitResult,
-} from "./validate.ts"
+} from "./validate.js"
 
-const USAGE = `showcase — CLI for the Showcase board (leaderboard.naufaldi.com)
+const USAGE = `cursorshop — CLI for the Showcase board (leaderboard.naufaldi.com)
 
 Usage:
-  showcase list                                   List all submissions
-  showcase get --id <uuid>                        Show one submission with markdown and scores
-  showcase submit [flags]                         Create a submission
+  cursorshop list                                   List all submissions
+  cursorshop get --id <uuid>                        Show one submission with markdown and scores
+  cursorshop submit [flags]                         Create a submission
 
 submit flags:
   --title <text>            Project title (required, ≤200 chars)
@@ -228,7 +228,7 @@ async function main(): Promise<void> {
       await commandSubmit(rest, baseUrl)
       rejectLeftover(rest)
     } else {
-      throw new UsageError(`Unknown command: ${command}\nRun: showcase --help`)
+      throw new UsageError(`Unknown command: ${command}\nRun: cursorshop --help`)
     }
   } catch (error) {
     if (error instanceof UsageError) fail(error.message, 1)

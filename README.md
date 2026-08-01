@@ -1,65 +1,51 @@
-# Cursor Shop
+# cursorshop
 
-An opinionated starter for a web app monorepo. It keeps the browser app, API, and shared contracts separate without hiding the development workflow behind a large toolchain.
+A workshop submission platform and the tooling that drives it — built live at a Cursor Jakarta × Hacktiv8 workshop.
+
+Two things live here:
+
+- **`cursorshop` on npm** — an agent-first CLI for the [workshop leaderboard](https://leaderboard.naufaldi.com). The board has no documented API, so the CLI reverse-engineers the deployed TanStack Start bundle and drives its real server functions: list, inspect, and submit projects from the terminal. See [`apps/cli`](./apps/cli).
+  ```sh
+  npx cursorshop list
+  npx cursorshop get --id <uuid>
+  npx cursorshop submit --title "…" --name "…" \
+    --repo-url https://github.com/me/repo --app-url https://… \
+    --prd-file prd.md --rfc-file rfc.md --screenshot screenshot.png
+  ```
+- **The cursorshop platform (in progress)** — accountless rooms, secret-gated judging, and a phase-driven leaderboard, per [docs/plan.md](./docs/plan.md). Web app (`apps/web`, TanStack Start + React), HTTP API (`apps/api`, Effect `HttpApi`), shared contracts (`packages/shared`), deploying to Cloudflare Workers via Alchemy.
 
 ## Stack
 
 - pnpm workspaces and dependency catalogs
-- Vite and React for the web app
-- Effect HTTP on Node.js for the API
-- Effect Schema for runtime-checked shared contracts
-- Effect language-service diagnostics and refactors
-- TypeScript project references
-- Oxc formatter and linter
-- Vitest for tests
+- TanStack Start, React, TanStack Query/Form, Tailwind, shadcn (Base UI)
+- Effect `HttpApi` + Schema shared contracts
+- Alchemy v2 on Cloudflare (Workers, D1 + Drizzle, R2)
+- Oxc formatter and linter, Vitest, Node 22+ type stripping
 
 ## Structure
 
 ```text
 apps/
-  api/       Effect HTTP API and Node.js entrypoint
-  web/       Vite and React application
+  web/       TanStack Start web app (cursorshop.ericc.ch)
+  api/       Effect HttpApi Worker (api.cursorshop.ericc.ch)
+  cli/       `cursorshop` npm CLI for the workshop leaderboard
 packages/
-  shared/    Contracts used by the API and web app
+  shared/    Contracts shared by the API, web app, and CLI
 ```
 
 ## Getting Started
 
-Install dependencies:
-
 ```sh
 pnpm install
-```
-
-Start the API and web app in separate terminals:
-
-```sh
-pnpm run dev:api
-pnpm run dev:web
-```
-
-Open `http://localhost:5173`. The Vite server proxies `/api` requests to the API on port `3001`.
-
-Run the full local check:
-
-```sh
-pnpm run check
+pnpm run check   # typecheck, test, lint
 pnpm run build
 ```
 
-The API can be configured with `PORT`. Copy `.env.example` to `.env` when local environment values are needed.
-
-Sync the external source references used by the project:
-
-```sh
-pnpm run references
-```
-
-Node.js runs the TypeScript entrypoints directly in the current Node runtime, so the API does not need a separate dev transpiler. The package manager is pinned to pnpm `11.2.2`.
+Dev servers: `pnpm run dev:web`, `pnpm run dev:api`, or the whole Alchemy stack with `pnpm run dev:stack`.
 
 ## Conventions
 
 - Keep app-specific code in `apps/` and reusable code in `packages/`.
 - Put request and response contracts in `packages/shared` rather than duplicating them at either boundary.
-- Prefer explicit package exports and package-local `typecheck` scripts.
-- Keep runtime code portable; use Node-specific APIs only at the application entrypoint.
+- Prefetch into the TanStack Query cache from route loaders; components read through Query hooks; mutations update or invalidate the cache.
+- Keep API route construction separate from Worker entrypoints; run Effect at application edges only.

@@ -14,8 +14,7 @@ export const Route = createRootRouteWithContext<{
       { content: "width=device-width, initial-scale=1", name: "viewport" },
       { content: "#f3f5f8", name: "theme-color" },
       {
-        content:
-          "Accountless workshop rooms for submissions, judging, and published results.",
+        content: "Accountless workshop rooms for submissions, judging, and published results.",
         name: "description",
       },
       { title: "cursorshop" },

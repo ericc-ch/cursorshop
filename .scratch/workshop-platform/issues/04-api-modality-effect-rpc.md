@@ -12,10 +12,10 @@ Answer: **Yes — Effect RPC** for the API Worker. Define an `RpcGroup` in `pack
 
 From [APIs](https://v2.alchemy.run/apis/):
 
-| Modality | Use when | Clients |
-| --- | --- | --- |
-| Schemaless RPC | Internal Worker↔Worker / DO | Bindings |
-| **Effect RPC** | Trust boundary + Effect/TS consumers | Schema + Fetcher/URL |
+| Modality                | Use when                              | Clients              |
+| ----------------------- | ------------------------------------- | -------------------- |
+| Schemaless RPC          | Internal Worker↔Worker / DO           | Bindings             |
+| **Effect RPC**          | Trust boundary + Effect/TS consumers  | Schema + Fetcher/URL |
 | Effect HTTP (`HttpApi`) | Trust boundary + non-Effect consumers | Plain HTTP / OpenAPI |
 
 Web app → API Worker is a trust boundary with an Effect/TS client → **Effect RPC**.

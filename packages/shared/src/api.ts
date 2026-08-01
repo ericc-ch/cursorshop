@@ -63,10 +63,12 @@ export const makeHealthResponseEffect = Effect.gen(function* () {
 export const health = HttpApiEndpoint.get("health", "/health", {
   success: HealthResponse,
   error: HttpApiError.InternalServerError,
-}).annotate(OpenApi.Summary, "API health check").annotate(
-  OpenApi.Description,
-  "Returns a liveness payload when the cursorshop API can serve requests.",
-)
+})
+  .annotate(OpenApi.Summary, "API health check")
+  .annotate(
+    OpenApi.Description,
+    "Returns a liveness payload when the cursorshop API can serve requests.",
+  )
 
 /** Health operations for the cursorshop API. */
 export class HealthGroup extends HttpApiGroup.make("Health")
