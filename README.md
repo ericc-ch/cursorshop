@@ -1,8 +1,12 @@
 # cursorshop
 
+![Landing page](docs/landing-preview.png)
+
 A workshop submission platform and the tooling that drives it — built live at a Cursor Jakarta × Hacktiv8 workshop.
 
-Two things live here:
+**Try it live:** [cursorshop landing page](https://ericc-ch.github.io/cursorshop/) · [the workshop leaderboard](https://leaderboard.naufaldi.com)
+
+## Two things live here
 
 - **`cursorshop` on npm** — an agent-first CLI for the [workshop leaderboard](https://leaderboard.naufaldi.com). The board has no documented API, so the CLI reverse-engineers the deployed TanStack Start bundle and drives its real server functions: list, inspect, and submit projects from the terminal. See [`apps/cli`](./apps/cli).
   ```sh
