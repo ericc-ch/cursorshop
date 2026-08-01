@@ -1,4 +1,5 @@
-import { decodeHealthResponse, type HealthResponse } from "@cursorshop/shared"
+import { parseHealthResponse, type HealthResponse } from "@cursorshop/shared"
+import { Result } from "effect"
 import { useEffect, useState } from "react"
 
 const navigation = [
@@ -58,7 +59,13 @@ export function App() {
         }
 
         const payload = (await response.json()) as unknown
-        setHealth(decodeHealthResponse(payload))
+        const parsed = parseHealthResponse(payload)
+        if (Result.isFailure(parsed)) {
+          setRequestState("offline")
+          return
+        }
+
+        setHealth(parsed.success)
         setRequestState("online")
       } catch (error: unknown) {
         if (error instanceof DOMException && error.name === "AbortError") {

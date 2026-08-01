@@ -1,12 +1,12 @@
-import { Effect } from "effect"
+import { Effect, Result } from "effect"
 import { OpenApi } from "effect/unstable/httpapi"
 import { describe, expect, it } from "vitest"
 
 import {
   CursorshopApi,
-  decodeHealthResponse,
   makeHealthResponse,
   makeHealthResponseEffect,
+  parseHealthResponse,
 } from "./api.ts"
 
 describe("health response", () => {
@@ -26,7 +26,8 @@ describe("health response", () => {
   })
 
   it("rejects an invalid response", () => {
-    expect(() => decodeHealthResponse({ status: "offline" })).toThrow()
+    const result = parseHealthResponse({ status: "offline" })
+    expect(Result.isFailure(result)).toBe(true)
   })
 })
 

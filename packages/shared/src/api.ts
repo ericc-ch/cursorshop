@@ -28,8 +28,11 @@ export const HealthResponse = Schema.Struct({
 /** Parsed health-check response. */
 export type HealthResponse = typeof HealthResponse.Type
 
-/** Decode an untrusted value as a health response. */
+/** Decode an untrusted value as a health response in Effect. */
 export const decodeHealthResponseEffect = Schema.decodeUnknownEffect(HealthResponse)
+
+/** Parse an untrusted value as a health response, returning a typed failure on mismatch. */
+export const parseHealthResponse = Schema.decodeUnknownResult(HealthResponse)
 
 /**
  * Build a health response for a fixed timestamp.
@@ -49,15 +52,6 @@ export const makeHealthResponseEffect = Effect.gen(function* () {
   const timestamp = new Date(yield* Clock.currentTimeMillis).toISOString()
   return makeHealthResponse(timestamp)
 })
-
-/**
- * Decode an untrusted value as a health response, throwing on failure.
- *
- * @param value - Untrusted input.
- */
-export function decodeHealthResponse(value: unknown): HealthResponse {
-  return Schema.decodeUnknownSync(HealthResponse)(value)
-}
 
 /**
  * `GET /api/health` — report whether the API process can answer.
