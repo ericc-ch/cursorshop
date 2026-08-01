@@ -12,6 +12,10 @@ Status: open
 - [ ] Load and follow the `design` skill before planning or editing UI.
 - Sources: _Record consulted references before implementation._
 - Chosen API/pattern: _Record the results Query, projector layout, celebratory treatment, and end-to-end test patterns before implementation._
+- Playwright on NixOS:
+  - Do **not** rely on Playwright’s downloaded/bundled browser binaries; they often fail on NixOS.
+  - Resolve the system browser with `command -v helium` and point Playwright at that executable (e.g. `executablePath` / launch options).
+  - Confirm `helium` is on `PATH` before running e2e; document the chosen launch config in Research notes.
 
 - [ ] A Room in `results` displays ranked projects with overall, PRD, RFC, and App scores.
 - [ ] The results route prefetches reusable Leaderboard Query options and reads the hydrated cache through Query hooks.
@@ -20,6 +24,6 @@ Status: open
 - [ ] UI components follow the strict shadcn-first fallback order and include polished loading, empty, error, focus, and reduced-motion states.
 - [ ] Submission and scoring controls remain locked in `results`.
 - [ ] Results remain hidden in `submissions` and `judging` without leaking aggregate data through the browser or public API.
-- [ ] Playwright covers Room creation, complete Submission creation and editing, phase advancement, two Judges scoring and revising, results publication, tie-breaking, and unscored placement.
+- [ ] Playwright covers Room creation, complete Submission creation and editing, phase advancement, two Judges scoring and revising, results publication, tie-breaking, and unscored placement, launching via the `helium` binary from `command -v helium` (not Playwright’s bundled browsers).
 - [ ] The deployed web and public API paths receive a final smoke check on the one-stage `cursorshop.ericc.ch` / `api.cursorshop.ericc.ch` topology.
 - [ ] `pnpm run check` and `pnpm run build` pass.
