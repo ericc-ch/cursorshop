@@ -4,6 +4,7 @@
     "**/node_modules/**",
     "**/dist/**",
     "**/coverage/**",
+    "**/routeTree.gen.ts",
     "docs/workshop_slides.md"
   ],
   "semi": false,
